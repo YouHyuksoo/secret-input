@@ -1,6 +1,15 @@
 {
   "name": "secret-input",
-  "version": "0.1.0",
-  "description": "비밀번호·토큰을 채팅 대신 전용 입력창으로 받아, 모델에게 값을 보이지 않고 명령에만 넣어 준다",
-  "types": "./types/index.d.ts"
+  "version": "0.2.0",
+  "description": "Take passwords and tokens in a private input pane instead of the chat: the model never sees the value, which goes only into the commands that run.",
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "language": {
+      "type": "string",
+      "title": "Language",
+      "description": "Language of the pane, toasts and messages (en or ko)",
+      "default": "en",
+      "options": ["en", "ko"]
+    }
+  }
 }

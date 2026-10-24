@@ -5,7 +5,7 @@ const PANE = {
   component: 'Pane',
   requestId: 'secret-input',
   props: {
-    title: '비밀값 입력: DB_PW',
+    title: 'Secret: DB_PW',
     isFocused: true,
     bodyColumns: 60,
     placement: 'dock',
@@ -16,7 +16,7 @@ const PANE = {
 
 const DUMMY = "zz-dummy-91'827"
 
-test('저장한 값은 명령에만 들어가고 결과·기록에서는 가려진다', async ($, on) => {
+test('a saved value goes into the command only and is masked in the result', async ($, on) => {
   const ran: string[] = []
   on('command.register', () => ({ value: { command: 'secret' } }))
   on('tool.register', () => ({ value: { tool: 'mcp__secret-input__request_secret' } }))
@@ -55,7 +55,7 @@ test('저장한 값은 명령에만 들어가고 결과·기록에서는 가려�
   expect(JSON.stringify(ps)).not.toContain('zz-dummy')
 })
 
-test('저장 안 된 이름은 실행하지 않는다', async ($, on) => {
+test('a name with no saved value is not run', async ($, on) => {
   let calls = 0
   on('tool.call', () => {
     calls += 1
@@ -66,3 +66,26 @@ test('저장 안 된 이름은 실행하지 않는다', async ($, on) => {
   expect(result.deny).toContain('NOPE')
   expect(calls).toBe(0)
 })
+
+for (const [language, words] of [
+  ['en', /Not sent to the chat/],
+  ['ko', /채팅·모델에는/],
+] as const) {
+  test(`the pane speaks ${language}`, { options: { language } }, async ($, on) => {
+    on('command.register', () => ({ value: { command: 'secret' } }))
+    on('tool.register', () => ({ value: { tool: 'mcp__secret-input__request_secret' } }))
+    on('ui.open', () => ({ value: { isPlaced: true } }))
+    on('session.start', (_, e) => ({ cwd: e.cwd }))
+
+    await $.session.start({ cwd: '/', surface: 'terminal', isInteractive: true })
+    await $.command.run({
+      command: 'secret',
+      args: 'DB_PW',
+      origin: { kind: 'composer' },
+      presentation: { isFullscreen: true, columns: 160 },
+    })
+    const ui = await $.ui.mount({ ...PANE, surface: 'desktop' })
+    expect(await ui.find({ type: 'Text', text: words })).toBeDefined()
+    await ui.unmount()
+  })
+}
