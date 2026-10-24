@@ -48,3 +48,7 @@ claude plugin install secret-input --marketplace YouHyuksoo/secret-input
 - settings.json 의 PreToolUse 같은 명령 훅은 값이 들어간 명령을 받을 수 있습니다.
 - 채팅에 직접 붙여넣은 값은 막지 못합니다.
 - Claude가 창을 자동으로 여는 것은 터미널 폭 144칸 이상에서만 됩니다. 좁으면 `/secret 이름` 으로 직접 여세요.
+
+## 라이선스
+
+MIT. [LICENSE](LICENSE) 참고.

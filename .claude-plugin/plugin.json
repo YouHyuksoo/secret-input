@@ -2,6 +2,7 @@
   "name": "secret-input",
   "version": "0.2.0",
   "description": "Take passwords and tokens in a private input pane instead of the chat: the model never sees the value, which goes only into the commands that run.",
+  "license": "MIT",
   "types": "./types/index.d.ts",
   "userConfig": {
     "language": {
@@ -9,7 +10,10 @@
       "title": "Language",
       "description": "Language of the pane, toasts and messages (en or ko)",
       "default": "en",
-      "options": ["en", "ko"]
+      "options": [
+        "en",
+        "ko"
+      ]
     }
   }
 }

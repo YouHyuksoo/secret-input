@@ -48,3 +48,7 @@ The pane, toasts and messages are in English by default. To switch to Korean, se
 - Command hooks in your `settings.json` (PreToolUse and the like) may receive the command with the value in it.
 - A value you paste straight into the chat is not protected.
 - Claude can open the pane by itself only in a terminal at least 144 columns wide. Narrower, run `/secret NAME` yourself.
+
+## License
+
+MIT. See [LICENSE](LICENSE).
