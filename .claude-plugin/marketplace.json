@@ -1,0 +1,5 @@
+{
+  "name": "secret-input",
+  "owner": { "name": "YouHyuksoo" },
+  "plugins": [{ "name": "secret-input", "source": "./" }]
+}

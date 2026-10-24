@@ -1,0 +1,6 @@
+{
+  "name": "secret-input",
+  "version": "0.1.0",
+  "description": "비밀번호·토큰을 채팅 대신 전용 입력창으로 받아, 모델에게 값을 보이지 않고 명령에만 넣어 준다",
+  "types": "./types/index.d.ts"
+}
